@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Alubys system — commit .agent/ memory, planning, tasks, reflections, and sessions.
+# Real local secret notes are ignored by .agent/.gitignore.
+
+# Never commit secrets
+.env
+.env.*
+*.pem
+*.key
+secrets/
+.agent/secrets.local.md
+
+# OS
+Thumbs.db
+ehthumbs.db

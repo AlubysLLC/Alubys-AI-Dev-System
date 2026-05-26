@@ -1,0 +1,83 @@
+# [PROJECT NAME]
+
+> [One sentence: what this project does and why it exists]
+
+---
+
+## What It Does
+
+[2–3 sentences describing the project for someone seeing it for the first time]
+
+---
+
+## Getting Started
+
+### Prerequisites
+- [Runtime / language version, e.g. Node.js 20+, Python 3.11+]
+- [Required tools or services]
+
+### Install & Run
+```bash
+# Clone the repo
+git clone [repo-url]
+cd [project-name]
+
+# Install dependencies
+[install command]
+
+# Run in development
+[run command]
+```
+
+### Environment Setup
+Copy `.env.example` to `.env` and fill in the required values:
+```bash
+cp .env.example .env
+```
+
+---
+
+## Project Structure
+
+```
+[project-name]/
+├── [main source dir]/     # [What's here]
+├── [tests dir]/           # [What's here]
+├── docs/                  # Documentation
+└── .agent/                # AI memory system (Alubys)
+```
+
+---
+
+## Development
+
+| Command | Description |
+|---------|-------------|
+| `[command]` | Run development server |
+| `[command]` | Run tests |
+| `[command]` | Run linter |
+| `[command]` | Build for production |
+
+---
+
+## AI-Assisted Project Work
+
+This project uses the [Alubys AI Development System](https://github.com/AlubysLLC/Alubys-AI-Dev-System).
+
+To start an AI session:
+1. Open your AI assistant
+2. Say: "Follow `AGENTS.md`, read the startup files, and tell me where we are."
+
+Fallback: if the AI cannot read project files, paste `MASTER_SYSTEM_PROMPT.md`, relevant startup files, and any setup or mode prompt manually.
+
+Current project status: see `.agent/memory/active-context.md`
+
+---
+
+## License
+
+[License type] — see [LICENSE](./LICENSE)
+
+---
+
+*Last updated: [DATE]*

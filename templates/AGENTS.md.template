@@ -1,0 +1,156 @@
+# AGENTS.md
+## [PROJECT NAME] — AI Agent Instructions
+
+> This file is the first thing any AI agent reads when joining this project.
+> It defines the project, the rules, the stack, and how to work here.
+
+---
+
+## Project Overview
+
+**Project**: [PROJECT NAME]
+**Purpose**: [1–2 sentences on what this project does and why it exists]
+**Status**: [Active Development / Maintenance / Paused]
+**Primary AI System**: [Claude / Codex / GPT-4 / etc.]
+
+---
+
+## Operating System
+
+This project uses the **Alubys AI Development System**.
+
+For file-aware AI tools such as Claude Code, Codex, Cursor, or other agents with repository access, `AGENTS.md` is the normal entry point. Read and follow `MASTER_SYSTEM_PROMPT.md` from disk for the full operating system.
+
+Fallback for chat-only tools: if the AI cannot read repository files, the user must paste `MASTER_SYSTEM_PROMPT.md`, relevant startup files, and any setup or mode prompt manually. This is a compatibility path, not the primary workflow.
+
+**Current Mode**: [BRAINSTORMING / PLANNING / EXECUTION / REFLECTION]
+**Approval Mode**: [Plan-First / Standard / Autonomous]
+
+---
+
+## Startup Protocol
+
+Before doing anything in this project:
+
+1. Read `MASTER_SYSTEM_PROMPT.md`
+2. Read `.agent/memory/active-context.md`
+3. Read `.agent/tasks/in-progress.md`
+4. Read `.agent/tasks/roadmap.md`
+5. Read `.agent/memory/lessons-learned.md`
+6. Read `.agent/memory/decisions.md`
+7. Confirm current state to the user before proceeding
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Version | Notes |
+|-------|-----------|---------|-------|
+| Language | [e.g. TypeScript] | [X.X] | [Notes] |
+| Framework | [e.g. Next.js] | [X.X] | [Notes] |
+| Database | [e.g. PostgreSQL] | [X.X] | [Notes] |
+| Hosting | [e.g. Vercel] | — | [Notes] |
+| Testing | [e.g. Vitest] | [X.X] | [Notes] |
+
+---
+
+## File Structure
+
+```
+[project-root]/
+├── AGENTS.md               # This file — AI entry point
+├── CLAUDE.md               # Claude handoff to AGENTS.md
+├── .agent/                 # AI memory and planning system
+│   ├── memory/             # Persistent context
+│   ├── planning/           # Architecture and planning docs
+│   ├── tasks/              # Roadmap, backlog, progress
+│   ├── sessions/           # Session logs
+│   └── reflections/        # Improvement logs
+├── src/                    # [Source code description]
+├── tests/                  # [Tests description]
+└── docs/                   # [Docs description]
+```
+
+---
+
+## Coding Standards
+
+### Style & Formatting
+- [Linting tool and configuration]
+- [Formatting tool, e.g. Prettier]
+- [Tab/space preference and indent size]
+
+### Naming Conventions
+- Components: `PascalCase`
+- Utilities/Functions: `camelCase`
+- Files: `kebab-case` (or specify)
+- Constants: `UPPER_SNAKE_CASE`
+
+### Import Order
+1. External libraries
+2. Internal modules
+3. Utilities and helpers
+4. Types/interfaces
+5. Styles
+
+### Common Commands
+| Command | Description |
+|---------|-------------|
+| `[command]` | Run development server |
+| `[command]` | Run tests |
+| `[command]` | Run linter |
+| `[command]` | Build for production |
+
+---
+
+## Working Rules
+
+1. **Follow the current mode** (Brainstorming / Planning / Execution / Reflection)
+2. **Run the startup protocol** before beginning any session
+3. **Run the closeout protocol** before ending any session
+4. **Honor the approval mode** recorded in this file and `.agent/memory/active-context.md`
+5. **Small changes only** — no large rewrites without explicit authorization
+6. **Update memory files** after every meaningful unit of work
+7. **Never store real secrets** in tracked files; reference secret names only
+8. **Document decisions** in `.agent/memory/decisions.md` when made
+
+## Approval Mode Options
+
+- **Plan-First Mode**: Present a complete plan and wait for explicit user approval before changing files, moving/deleting files, running commands, executing scripts, installing dependencies, or implementing changes.
+- **Standard Mode**: Proceed with safe scoped work after orientation, but ask before destructive, risky, broad, or external-impact actions.
+- **Autonomous Mode**: Proceed through implementation and verification within the requested scope, while still asking before destructive actions, external-impact actions, credential handling, publishing, deployment, or broad architecture changes.
+
+Always ask before deleting data/files, overwriting user work, changing git history, publishing/deploying, handling real secrets, or making broad architecture/product-direction changes.
+
+---
+
+## Do Not Do
+
+- ❌ Skip startup/closeout protocols
+- ❌ Store API keys, passwords, or real secret values in tracked files
+- ❌ Make architectural changes without documenting them
+- ❌ Rewrite working code without authorization
+- ❌ Begin implementation during Brainstorming mode
+- ❌ Leave memory files stale at end of session
+
+---
+
+## Key Contacts & Context
+
+- **Project Owner**: [Name]
+- **Primary Developer**: [Name]
+- **Repository**: [URL]
+- **Issue Tracker**: [URL]
+- **Deployment Dashboard**: [URL]
+
+## Secret Handling
+
+- Commit `.agent/` by default, including `.agent/sessions/`
+- Reference secrets by name only, such as `DATABASE_URL` or `OPENAI_API_KEY`
+- Store real values in environment variables, a password manager, or `.agent/secrets.local.md`
+- Keep `.agent/secrets.local.md` ignored by git
+
+---
+
+*Last updated: [DATE]*
+*Alubys AI Development System — AGENTS.md Template v1.0*
