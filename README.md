@@ -68,22 +68,38 @@ alubys-ai-dev-system/
 
 ## Quickstart
 
-### New project
+### New project — Mac / Linux
 ```bash
 cd ~/Projects
 bash /path/to/alubys-ai-dev-system/scripts/init-new-project.sh my-project-name
 cd my-project-name
 ```
-Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, then use `_PROMPTS/START_NEW_PROJECT_PROMPT.md` for the first setup workflow.
 
-### Existing project
+### New project — Windows (PowerShell)
+```powershell
+cd C:\Projects
+.\path\to\alubys-ai-dev-system\scripts\init-new-project.ps1 my-project-name
+cd my-project-name
+```
+
+### Existing project — Mac / Linux
 ```bash
 cd my-existing-project
 bash /path/to/alubys-ai-dev-system/scripts/copy-agent-system.sh
 ```
-Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, then use `_PROMPTS/ONBOARD_EXISTING_PROJECT_PROMPT.md` for onboarding.
 
-### Verify the scripts
+### Existing project — Windows (PowerShell)
+```powershell
+cd C:\my-existing-project
+.\path\to\alubys-ai-dev-system\scripts\copy-agent-system.ps1
+```
+
+Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, then use the relevant prompt file for your workflow.
+
+> **Windows first-time setup:** If PowerShell blocks the script, run this once in PowerShell:
+> `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+### Verify the scripts (Mac / Linux)
 ```bash
 bash tests/test-scripts.sh
 ```

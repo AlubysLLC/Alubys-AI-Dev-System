@@ -1,0 +1,7 @@
+# Enforce Unix line endings for shell scripts — required for bash compatibility.
+# Without this, Windows Git may convert LF to CRLF and break bash execution.
+*.sh   text eol=lf
+*.py   text eol=lf
+
+# All other text files: let Git handle line endings per platform.
+*      text=auto
