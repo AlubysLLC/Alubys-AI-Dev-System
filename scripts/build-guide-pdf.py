@@ -152,6 +152,12 @@ S = {
     'callout':        _s('callout',
                          fontName='Helvetica', fontSize=9, leading=13,
                          textColor=colors.black),
+
+    # Footer (centered italic — e.g. *Guide title — v1.0* standalone line)
+    'footer':         _s('footer',
+                         fontName='Helvetica-Oblique', fontSize=9, leading=11,
+                         textColor=C_MED_GRAY, alignment=TA_CENTER,
+                         spaceBefore=6, spaceAfter=4),
 }
 
 # ── Header canvas ─────────────────────────────────────────────────────────────
@@ -271,7 +277,7 @@ def _table_flowable(rows):
         ('GRID',          (0, 0), (-1, -1), 0.5, C_HR),
         ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
     ]))
-    return KeepTogether(tbl)
+    return tbl  # caller (flush_table) wraps in KeepTogether
 
 
 # ── Step card ─────────────────────────────────────────────────────────────────
@@ -396,15 +402,33 @@ def parse_md(md_text):
     code_lines = []
     tbl_lines  = []
 
+    # Track whether the last content added was a heading (## or ###),
+    # so flush_table() can wrap heading + table in a single KeepTogether.
+    heading_pending    = [False]
+    heading_start_idx  = [0]
+
+    def _reset_heading():
+        heading_pending[0]   = False
+        heading_start_idx[0] = 0
+
     def flush_table():
         if not tbl_lines:
             return
         rows = _parse_table_rows(tbl_lines)
         tbl  = _table_flowable(rows)
         if tbl:
-            current.append(Spacer(1, 4))
-            current.append(tbl)
-            current.append(Spacer(1, 6))
+            if heading_pending[0]:
+                # Wrap heading items + table in one KeepTogether block
+                h_items = current[heading_start_idx[0]:]
+                del current[heading_start_idx[0]:]
+                current.append(KeepTogether(
+                    h_items + [Spacer(1, 4), tbl, Spacer(1, 6)]
+                ))
+            else:
+                current.append(Spacer(1, 4))
+                current.append(tbl)
+                current.append(Spacer(1, 6))
+        _reset_heading()
         tbl_lines.clear()
 
     i = 0
@@ -439,6 +463,7 @@ def parse_md(md_text):
 
         # ── horizontal rule / section separator ──────────────────────────────
         if re.match(r'^[-*_]{3,}\s*$', line.strip()):
+            _reset_heading()
             # Only render within a section (skip bare dividers between sections)
             if current:
                 current.append(HRFlowable(width=BODY_W, thickness=0.5,
@@ -458,6 +483,8 @@ def parse_md(md_text):
             if current:
                 sections.append(current)
             current = []
+            heading_start_idx[0] = len(current)
+            heading_pending[0]   = True
             current.append(Paragraph(_xml(title), S['h1']))
             current.append(HRFlowable(width=BODY_W, thickness=1,
                                        color=C_NAVY, spaceAfter=5))
@@ -467,6 +494,8 @@ def parse_md(md_text):
         # ── sub-heading (###) ────────────────────────────────────────────────
         if re.match(r'^### ', line):
             title = line[4:].strip()
+            heading_start_idx[0] = len(current)
+            heading_pending[0]   = True
             current.append(Paragraph(_xml(title), S['h2']))
             current.append(HRFlowable(width=BODY_W, thickness=0.5,
                                        color=C_HR, spaceAfter=3))
@@ -476,6 +505,7 @@ def parse_md(md_text):
         # ── mode card (#### MODE N — TITLE) ──────────────────────────────────
         mc = re.match(r'^#### MODE (\d+) — (.+)', line)
         if mc:
+            _reset_heading()
             mode_num   = int(mc.group(1))
             mode_title = mc.group(2).strip()
             j = i + 1
@@ -490,6 +520,7 @@ def parse_md(md_text):
         # ── step card (#### N. Title) ─────────────────────────────────────────
         sc = re.match(r'^#### (\d+)\.\s+(.+)', line)
         if sc:
+            _reset_heading()
             number = sc.group(1)
             title  = sc.group(2).strip()
             j = i + 1
@@ -503,6 +534,7 @@ def parse_md(md_text):
 
         # ── blockquote / callout ─────────────────────────────────────────────
         if line.strip().startswith('> '):
+            _reset_heading()
             parts = [line.strip()[2:]]
             j = i + 1
             while j < len(lines) and lines[j].strip().startswith('> '):
@@ -515,6 +547,7 @@ def parse_md(md_text):
         # ── bullet list ───────────────────────────────────────────────────────
         m = re.match(r'^(\s*)([-*+])\s+(.*)', line)
         if m:
+            _reset_heading()
             indent = len(m.group(1))
             text   = m.group(3)
             style  = S['bullet_sub'] if indent >= 4 else S['bullet']
@@ -526,6 +559,7 @@ def parse_md(md_text):
         # ── numbered list ─────────────────────────────────────────────────────
         m = re.match(r'^(\s*)\d+[.)]\s+(.*)', line)
         if m:
+            _reset_heading()
             indent = len(m.group(1))
             text   = m.group(2)
             style  = S['bullet_sub'] if indent >= 4 else S['bullet']
@@ -536,6 +570,7 @@ def parse_md(md_text):
         # ── image ─────────────────────────────────────────────────────────────
         m = re.match(r'!\[([^\]]*)\]\(([^)]+)\)', line.strip())
         if m:
+            _reset_heading()
             rel_path = m.group(2)
             img = None
             if rel_path.startswith('http://') or rel_path.startswith('https://'):
@@ -591,7 +626,12 @@ def parse_md(md_text):
 
         text = ' '.join(ln.strip() for ln in para_lines).strip()
         if text:
-            current.append(Paragraph(_xml(text), S['body']))
+            # Standalone italic line (e.g. *Guide — v1.0*) → centered footer style
+            if re.match(r'^\*[^*]+\*$', text):
+                current.append(Paragraph(_xml(text), S['footer']))
+            else:
+                _reset_heading()
+                current.append(Paragraph(_xml(text), S['body']))
         i = j
 
     # flush anything remaining

@@ -26,22 +26,39 @@ Every AI session normally starts cold. You re-explain the architecture, re-descr
 
 ### What You Need
 
+**Mac / Linux**
 - An AI assistant (Claude, Codex, GPT-4, Gemini, or any capable AI)
-- A terminal (Mac Terminal or VSCode integrated terminal)
+- Terminal (Mac Terminal, iTerm2, or VSCode integrated terminal)
 - The alubys-ai-dev-system repository cloned once to a permanent location
 - Git (for version control — optional but recommended)
+
+**Windows**
+- An AI assistant (Claude, Codex, GPT-4, Gemini, or any capable AI)
+- PowerShell 5.1 or later (built into Windows 10 and 11 — no install needed)
+- The alubys-ai-dev-system repository cloned once to a permanent location
+- Git for Windows (required for cloning — https://git-scm.com/download/win)
 
 ### Clone Once to a Permanent Location
 
 The alubys-ai-dev-system repo is a tool you install once, not something you clone into every project. Choose a permanent home on your machine and clone it there. You will reference this location when setting up each new project.
 
 ```bash
-# Clone ONCE to a permanent location (do this only one time)
+# Mac / Linux — clone ONCE to a permanent location
 mkdir -p ~/Tools
 cd ~/Tools
 git clone https://github.com/AlubysLLC/Alubys-AI-Dev-System.git
 
 # You now have: ~/Tools/Alubys-AI-Dev-System/
+# Leave it here. Do not clone it again for each project.
+```
+
+```powershell
+# Windows (PowerShell) — clone ONCE to a permanent location
+mkdir C:\Tools
+cd C:\Tools
+git clone https://github.com/AlubysLLC/Alubys-AI-Dev-System.git
+
+# You now have: C:\Tools\Alubys-AI-Dev-System\
 # Leave it here. Do not clone it again for each project.
 ```
 
@@ -51,7 +68,7 @@ For file-aware AI tools (Claude Code, Cursor, Codex), the AI reads prompt files 
 
 For chat-only tools (Claude.ai, ChatGPT, Gemini), you will see instructions like "paste MASTER_SYSTEM_PROMPT.md." This means: open the file in any text editor, select all the text, copy it, and paste it directly into the AI chat input.
 
-> **Tip:** Open file in editor → Select All (Cmd+A) → Copy (Cmd+C) → Paste into AI chat (Cmd+V). Always paste the raw text — do not attach the file.
+> **Tip:** Open file in editor → Select All (Cmd+A on Mac, Ctrl+A on Windows/Linux) → Copy (Cmd+C / Ctrl+C) → Paste into AI chat (Cmd+V / Ctrl+V). Always paste the raw text — do not attach the file.
 
 ---
 
@@ -334,7 +351,21 @@ Real values belong in environment variables, a password manager, deployment secr
 
 ## 14. Templates And Scripts
 
-The installer scripts (`init-new-project.sh` and `copy-agent-system.sh`) generate all project files from the `templates/` directory. You do not need to modify templates to use the system.
+The installer scripts generate all project files from the `templates/` directory. You do not need to modify templates to use the system.
+
+**Mac / Linux:** `init-new-project.sh` and `copy-agent-system.sh`
+
+**Windows:** `init-new-project.ps1` and `copy-agent-system.ps1` — native PowerShell equivalents, no Git Bash or WSL required.
+
+```powershell
+# Windows — new project
+.\scripts\init-new-project.ps1 my-project-name
+
+# Windows — add to an existing project
+.\scripts\copy-agent-system.ps1 C:\path\to\existing-project
+```
+
+> **Windows first-time setup:** If PowerShell blocks the script, run this once in PowerShell: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
 If you want to customize the files that get installed into your projects — for example to pre-fill your organization name, standard tools, or default approval mode — edit the corresponding files in `templates/` before running the installer scripts.
 
@@ -378,7 +409,7 @@ All project memory lives in the `.agent/` directory inside your project.
 
 ### How to "Paste a File"
 
-> Open the `.md` file from `_PROMPTS/` in VSCode → Cmd+A (select all) → Cmd+C (copy) → Cmd+V (paste into AI chat). Always paste the raw text — do not attach as a file.
+> Open the `.md` file from `_PROMPTS/` in VSCode → Select All (Cmd+A on Mac, Ctrl+A on Windows) → Copy (Cmd+C / Ctrl+C) → Paste into AI chat (Cmd+V / Ctrl+V). Always paste the raw text — do not attach as a file.
 
 ### Session Startup — 30 seconds
 
@@ -434,15 +465,25 @@ Use on long sessions or before risky changes.
 
 ---
 
-## 17. Support This Project
+## 17. Legal
+
+This software is provided under the MIT License. See [LICENSE](./LICENSE) for the full text.
+
+By using this system in any form, you agree to the [Terms of Use](https://alubysllc.github.io/terms). Use is entirely at your own risk. Alubys, LLC is held harmless from any claims arising from use of this system, including data loss, AI token costs, and any consequences of AI-generated content.
+
+See [DISCLAIMER.md](./DISCLAIMER.md) for a summary of limitations.
+
+> **Click-wrap:** The installer scripts (`init-new-project.sh`, `copy-agent-system.sh`, `init-new-project.ps1`, `copy-agent-system.ps1`) display the Terms of Use and require typing `YES` before proceeding. This constitutes acceptance of the Terms of Use.
+
+---
+
+## 18. Support This Project
 
 The Alubys AI Development System is provided as a free public resource. If it helps you preserve AI memory, organize project work, or work more effectively with AI agents, you are welcome to support continued development and related public tools.
 
 Support can be sent through Zelle by scanning this QR code for **ALUBY'S LLC**:
 
 ![Zelle QR code for ALUBY'S LLC](https://github.com/user-attachments/assets/41d9a2b6-0424-4ca8-aedb-d7fc9247f92f)
-
-[Open Zelle QR code](https://github.com/user-attachments/assets/41d9a2b6-0424-4ca8-aedb-d7fc9247f92f)
 
 ---
 
