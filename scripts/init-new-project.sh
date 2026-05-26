@@ -76,13 +76,14 @@ render_agent_templates() {
 copy_prompt_files() {
   local prompt
 
+  mkdir -p "$TARGET_DIR/_PROMPTS"
   for prompt in MASTER_SYSTEM_PROMPT.md START_NEW_PROJECT_PROMPT.md ONBOARD_EXISTING_PROJECT_PROMPT.md \
                 BRAINSTORMING_MODE_PROMPT.md PLANNING_MODE_PROMPT.md EXECUTION_MODE_PROMPT.md REFLECTION_MODE_PROMPT.md; do
-    if [ -f "$SYSTEM_ROOT/$prompt" ]; then
-      cp "$SYSTEM_ROOT/$prompt" "$TARGET_DIR/$prompt"
-      print_ok "$prompt"
+    if [ -f "$SYSTEM_ROOT/_PROMPTS/$prompt" ]; then
+      cp "$SYSTEM_ROOT/_PROMPTS/$prompt" "$TARGET_DIR/_PROMPTS/$prompt"
+      print_ok "_PROMPTS/$prompt"
     else
-      print_warn "Missing prompt: $prompt"
+      print_warn "Missing prompt: _PROMPTS/$prompt"
     fi
   done
 }
@@ -93,6 +94,24 @@ echo "╔═══════════════════════�
 echo "║   Alubys AI Development System                   ║"
 echo "║   Initializing new project: $PROJECT_NAME"
 echo "╚══════════════════════════════════════════════════╝"
+
+# ── Terms of Use acceptance ────────────────────────────────
+echo ""
+echo "  TERMS OF USE — Alubys, LLC"
+echo "  ──────────────────────────────────────────────────"
+echo "  This software is provided without warranty of any kind."
+echo "  By proceeding, you accept full responsibility for all"
+echo "  outcomes, including data loss and AI token costs."
+echo "  Alubys, LLC is held harmless from any claims."
+echo ""
+echo "  Full Terms of Use: https://alubysllc.github.io/terms"
+echo ""
+read -p "  Type YES to accept the Terms of Use and continue: " _terms_accept
+if [ "$_terms_accept" != "YES" ]; then
+  echo "  Terms not accepted. Exiting."
+  exit 0
+fi
+echo ""
 
 if [ ! -d "$TEMPLATES_DIR" ]; then
   echo "Templates directory not found: $TEMPLATES_DIR"
@@ -126,7 +145,7 @@ print_info ""
 print_info "Next steps:"
 print_info "  1. cd $TARGET_DIR"
 print_info "  2. Open your AI assistant"
-print_info "  3. Ask your file-aware AI agent to follow AGENTS.md and use START_NEW_PROJECT_PROMPT.md"
+print_info "  3. Ask your file-aware AI agent to follow AGENTS.md and use _PROMPTS/START_NEW_PROJECT_PROMPT.md"
 print_info "  4. Choose approval mode and begin brainstorming"
-print_info "  Fallback: for chat-only tools, paste MASTER_SYSTEM_PROMPT.md and START_NEW_PROJECT_PROMPT.md manually."
+print_info "  Fallback: for chat-only tools, paste _PROMPTS/MASTER_SYSTEM_PROMPT.md and _PROMPTS/START_NEW_PROJECT_PROMPT.md manually."
 echo ""

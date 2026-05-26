@@ -7,8 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 INIT_SCRIPT="$PROJECT_ROOT/scripts/init-new-project.sh"
 COPY_SCRIPT="$PROJECT_ROOT/scripts/copy-agent-system.sh"
-PDF_SCRIPT="$PROJECT_ROOT/scripts/build-guide-pdf.sh"
-GUIDE_MD="$PROJECT_ROOT/Alubys_AI_Dev_System_Guide.md"
+GUIDE_MD="$PROJECT_ROOT/_GUIDE/Alubys_AI_Dev_System_Guide.md"
 
 fail() {
   echo "FAIL: $1" >&2
@@ -58,7 +57,7 @@ assert_same_hash() {
 
 run_copy_script() {
   local target="$1"
-  printf 'y\n' | bash "$COPY_SCRIPT" "$target" >/dev/null
+  printf 'YES\ny\n' | bash "$COPY_SCRIPT" "$target" >/dev/null
 }
 
 TMP_ROOT="$(mktemp -d /private/tmp/alubys-tests.XXXXXX)"
@@ -66,24 +65,29 @@ trap 'rm -rf "$TMP_ROOT"' EXIT
 
 bash -n "$INIT_SCRIPT"
 bash -n "$COPY_SCRIPT"
-bash -n "$PDF_SCRIPT"
 pass "scripts parse"
 
 assert_file "$GUIDE_MD"
-assert_contains "$GUIDE_MD" "This Markdown file is the source of truth"
+assert_contains "$GUIDE_MD" "Alubys AI Development System Guide"
+assert_contains "$GUIDE_MD" "Checkpoint Protocol"
+assert_contains "$GUIDE_MD" "Run checkpoint"
 assert_contains "$PROJECT_ROOT/README.md" "Alubys_AI_Dev_System_Guide.md"
 pass "guide source is documented"
 
 # New project from parent directory.
 PARENT_CASE="$TMP_ROOT/new-parent"
 mkdir -p "$PARENT_CASE"
-bash "$INIT_SCRIPT" sample-project "$PARENT_CASE/sample-project" >/dev/null
+printf 'YES\n' | bash "$INIT_SCRIPT" sample-project "$PARENT_CASE/sample-project" >/dev/null
 NEW_PROJECT="$PARENT_CASE/sample-project"
 
 assert_dir "$NEW_PROJECT/.agent"
+assert_dir "$NEW_PROJECT/_PROMPTS"
 assert_file "$NEW_PROJECT/AGENTS.md"
 assert_file "$NEW_PROJECT/CLAUDE.md"
 assert_file "$NEW_PROJECT/README.md"
+assert_file "$NEW_PROJECT/_PROMPTS/MASTER_SYSTEM_PROMPT.md"
+assert_file "$NEW_PROJECT/_PROMPTS/BRAINSTORMING_MODE_PROMPT.md"
+assert_file "$NEW_PROJECT/_PROMPTS/EXECUTION_MODE_PROMPT.md"
 assert_file "$NEW_PROJECT/.agent/.gitignore"
 assert_file "$NEW_PROJECT/.agent/secrets.example.md"
 assert_file "$NEW_PROJECT/.agent/memory/active-context.md"
@@ -92,6 +96,7 @@ assert_file "$NEW_PROJECT/.agent/tasks/in-progress.md"
 assert_file "$NEW_PROJECT/.agent/sessions/README.md"
 assert_contains "$NEW_PROJECT/AGENTS.md" "sample-project"
 assert_contains "$NEW_PROJECT/AGENTS.md" "Approval Mode"
+assert_contains "$NEW_PROJECT/AGENTS.md" "_PROMPTS/MASTER_SYSTEM_PROMPT.md"
 assert_contains "$NEW_PROJECT/.agent/memory/active-context.md" "Approval Mode"
 assert_contains "$NEW_PROJECT/README.md" "sample-project"
 assert_not_contains "$NEW_PROJECT/AGENTS.md" "[PROJECT NAME]"
@@ -104,7 +109,7 @@ NESTED_CASE="$TMP_ROOT/nested"
 mkdir -p "$NESTED_CASE/my-project"
 (
   cd "$NESTED_CASE/my-project"
-  bash "$INIT_SCRIPT" my-project >/dev/null
+  printf 'YES\n' | bash "$INIT_SCRIPT" my-project >/dev/null
 )
 assert_file "$NESTED_CASE/my-project/AGENTS.md"
 assert_no_file "$NESTED_CASE/my-project/my-project/AGENTS.md"

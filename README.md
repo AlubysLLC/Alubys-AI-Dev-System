@@ -175,4 +175,14 @@ Support can be sent through Zelle by scanning this QR code for **ALUBY'S LLC**:
 
 ---
 
+## Legal
+
+This software is provided "as is" by Alubys, LLC without warranty of any kind. Use is entirely at your own risk.
+
+By using this system in any form, you agree to the [Terms of Use](https://alubysllc.github.io/terms), including full assumption of responsibility for all outcomes — data loss, AI token costs, and any consequences of AI-generated content. Alubys, LLC is held harmless from any claims arising from use of this system.
+
+See [DISCLAIMER.md](./DISCLAIMER.md) and [LICENSE](./LICENSE) for details.
+
+---
+
 *Alubys AI Development System — public release package*

@@ -66,13 +66,14 @@ render_agent_templates_if_missing() {
 copy_prompt_if_missing() {
   local prompt="$1"
 
-  if [ -f "$TARGET_DIR/$prompt" ]; then
-    print_skip "$prompt"
-  elif [ -f "$SYSTEM_ROOT/$prompt" ]; then
-    cp "$SYSTEM_ROOT/$prompt" "$TARGET_DIR/$prompt"
-    print_ok "$prompt"
+  mkdir -p "$TARGET_DIR/_PROMPTS"
+  if [ -f "$TARGET_DIR/_PROMPTS/$prompt" ]; then
+    print_skip "_PROMPTS/$prompt"
+  elif [ -f "$SYSTEM_ROOT/_PROMPTS/$prompt" ]; then
+    cp "$SYSTEM_ROOT/_PROMPTS/$prompt" "$TARGET_DIR/_PROMPTS/$prompt"
+    print_ok "_PROMPTS/$prompt"
   else
-    print_warn "Missing prompt: $prompt"
+    print_warn "Missing prompt: _PROMPTS/$prompt"
   fi
 }
 
@@ -82,6 +83,24 @@ echo "╔═══════════════════════�
 echo "║   Alubys AI Development System                   ║"
 echo "║   Onboarding existing project                    ║"
 echo "╚══════════════════════════════════════════════════╝"
+
+# ── Terms of Use acceptance ────────────────────────────────
+echo ""
+echo "  TERMS OF USE — Alubys, LLC"
+echo "  ──────────────────────────────────────────────────"
+echo "  This software is provided without warranty of any kind."
+echo "  By proceeding, you accept full responsibility for all"
+echo "  outcomes, including data loss and AI token costs."
+echo "  Alubys, LLC is held harmless from any claims."
+echo ""
+echo "  Full Terms of Use: https://alubysllc.github.io/terms"
+echo ""
+read -p "  Type YES to accept the Terms of Use and continue: " _terms_accept
+if [ "$_terms_accept" != "YES" ]; then
+  echo "  Terms not accepted. Exiting."
+  exit 0
+fi
+
 echo ""
 echo "  Target project: $TARGET_DIR"
 echo "  Project name:   $PROJECT_NAME"
@@ -132,7 +151,7 @@ echo "╚═══════════════════════�
 echo ""
 echo "  Next steps:"
 echo "  1. Open your AI assistant"
-echo "  2. Ask your file-aware AI agent to follow AGENTS.md and use ONBOARD_EXISTING_PROJECT_PROMPT.md"
+echo "  2. Ask your file-aware AI agent to follow AGENTS.md and use _PROMPTS/ONBOARD_EXISTING_PROJECT_PROMPT.md"
 echo "  3. Choose approval mode and let the AI inspect and document the project"
-echo "  Fallback: for chat-only tools, paste MASTER_SYSTEM_PROMPT.md and ONBOARD_EXISTING_PROJECT_PROMPT.md manually."
+echo "  Fallback: for chat-only tools, paste _PROMPTS/MASTER_SYSTEM_PROMPT.md and _PROMPTS/ONBOARD_EXISTING_PROJECT_PROMPT.md manually."
 echo ""
