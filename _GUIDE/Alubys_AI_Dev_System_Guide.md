@@ -38,6 +38,8 @@ Every AI session normally starts cold. You re-explain the architecture, re-descr
 - The alubys-ai-dev-system repository cloned once to a permanent location
 - Git for Windows (required for cloning — https://git-scm.com/download/win)
 
+> **Online documentation:** The full guide is also available at [apps.alubys.com/ai-dev-system](https://apps.alubys.com/ai-dev-system/).
+
 ### Clone Once to a Permanent Location
 
 The alubys-ai-dev-system repo is a tool you install once, not something you clone into every project. Choose a permanent home on your machine and clone it there. You will reference this location when setting up each new project.

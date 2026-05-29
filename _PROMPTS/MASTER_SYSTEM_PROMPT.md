@@ -100,6 +100,28 @@ Do not end a session without completing every step above. This is how continuity
 
 ---
 
+## CHECKPOINT PROTOCOL
+
+Run a Checkpoint mid-session to persist progress without ending the session. Use this when a session is growing long, before a risky or complex change, or any time you want to ensure work survives a context compacting event.
+
+**Trigger:** User says `run checkpoint` or `checkpoint`.
+
+**Steps — in order:**
+
+1. Update `.agent/memory/active-context.md` — current phase, what was just completed, immediate next steps
+2. Update `.agent/tasks/in-progress.md` — move any completed sub-tasks to a "Just Completed (This Session)" section
+3. Append a one-line note to `.agent/memory/changelog.md` — date + brief summary of progress so far
+4. Confirm to the user: *"Checkpoint saved."* and continue working
+
+**What Checkpoint does NOT do:**
+- Does not update `completed.md`, `lessons-learned.md`, or `roadmap.md`
+- Does not end the session
+- Does not replace the Closeout Protocol
+
+A session with multiple Checkpoints still requires a full Closeout at the end.
+
+---
+
 ## WORKFLOW MODES
 
 This system uses four distinct modes. Stay in the current mode until explicitly instructed to advance.

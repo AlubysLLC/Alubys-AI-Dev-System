@@ -172,6 +172,7 @@ Claude, Codex, GPT-4, Gemini — the intelligence lives in the files, not in the
 
 ## Documentation
 
+- [Full Documentation Site](https://apps.alubys.com/ai-dev-system/) — browse the complete guide online
 - [Quickstart](./docs/QUICKSTART.md) — up and running in 10 minutes
 - [How to Use This System](./docs/HOW_TO_USE_THIS_SYSTEM.md) — full explanation
 - [Memory Rules](./docs/MEMORY_RULES.md) — how to keep memory files effective
