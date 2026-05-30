@@ -19,9 +19,9 @@
 
 This project uses the **Alubys AI Development System**.
 
-For file-aware AI tools such as Claude Code, Codex, Cursor, or other agents with repository access, `AGENTS.md` is the normal entry point. Read and follow `MASTER_SYSTEM_PROMPT.md` from disk for the full operating system.
+For file-aware AI tools such as Claude Code, Codex, Cursor, or other agents with repository access, `AGENTS.md` is the normal entry point. Read and follow `_PROMPTS/MASTER_SYSTEM_PROMPT.md` from disk for the full operating system.
 
-Fallback for chat-only tools: if the AI cannot read repository files, the user must paste `MASTER_SYSTEM_PROMPT.md`, relevant startup files, and any setup or mode prompt manually. This is a compatibility path, not the primary workflow.
+Fallback for chat-only tools: if the AI cannot read repository files, the user must paste `_PROMPTS/MASTER_SYSTEM_PROMPT.md`, relevant startup files, and any setup or mode prompt manually. This is a compatibility path, not the primary workflow.
 
 **Current Mode**: [BRAINSTORMING / PLANNING / EXECUTION / REFLECTION]
 **Approval Mode**: [Plan-First / Standard / Autonomous]
@@ -32,7 +32,7 @@ Fallback for chat-only tools: if the AI cannot read repository files, the user m
 
 Before doing anything in this project:
 
-1. Read `MASTER_SYSTEM_PROMPT.md`
+1. Read `_PROMPTS/MASTER_SYSTEM_PROMPT.md`
 2. Read `.agent/memory/active-context.md`
 3. Read `.agent/tasks/in-progress.md`
 4. Read `.agent/tasks/roadmap.md`
@@ -58,6 +58,7 @@ Before doing anything in this project:
 
 ```
 [project-root]/
+├── _PROMPTS/               # AI workflow prompt files
 ├── AGENTS.md               # This file — AI entry point
 ├── CLAUDE.md               # Claude handoff to AGENTS.md
 ├── .agent/                 # AI memory and planning system
