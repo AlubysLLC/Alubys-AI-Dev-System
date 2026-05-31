@@ -361,10 +361,10 @@ The installer scripts generate all project files from the `templates/` directory
 
 ```powershell
 # Windows — new project
-.\scripts\init-new-project.ps1 my-project-name
+C:\Tools\Alubys-AI-Dev-System\scripts\init-new-project.ps1 my-project-name
 
 # Windows — add to an existing project
-.\scripts\copy-agent-system.ps1 C:\path\to\existing-project
+C:\Tools\Alubys-AI-Dev-System\scripts\copy-agent-system.ps1 C:\path\to\existing-project
 ```
 
 > **Windows first-time setup:** If PowerShell blocks the script, run this once in PowerShell: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
