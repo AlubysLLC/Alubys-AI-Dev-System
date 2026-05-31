@@ -31,9 +31,6 @@ alubys-ai-dev-system/
 │   ├── PLANNING_MODE_PROMPT.md      # Architecture & roadmap phase
 │   ├── EXECUTION_MODE_PROMPT.md     # Execution phase
 │   └── REFLECTION_MODE_PROMPT.md    # Review & improve phase
-├── AGENTS.md                        # Canonical agent instructions for this repo
-├── CLAUDE.md                        # Claude handoff to AGENTS.md
-│
 ├── templates/                       # Copy into your projects
 │   ├── AGENTS.md.template           # AI entry point
 │   ├── CLAUDE.md.template           # Claude handoff to AGENTS.md
