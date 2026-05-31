@@ -25,9 +25,11 @@ Onboarding is not about cleaning up the project. It's about understanding it and
 
 ## Step 1: Copy the System
 
+> **First time?** [Install the system](docs/INSTALLATION.md) before running this command.
+
 ```bash
 # From inside your existing project
-bash /path/to/alubys-ai-dev-system/scripts/copy-agent-system.sh
+bash ~/Tools/Alubys-AI-Dev-System/scripts/copy-agent-system.sh
 ```
 
 This adds the `.agent/` directory structure, `AGENTS.md`, and the Claude handoff file `CLAUDE.md` without overwriting existing files.

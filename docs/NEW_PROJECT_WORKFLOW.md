@@ -8,8 +8,8 @@
 ## Before You Start
 
 You need:
+- [ ] The system installed on your machine — see [Installation](docs/INSTALLATION.md) if you haven't done this yet
 - [ ] A parent folder where your new project should be created
-- [ ] Access to the Alubys system directory (this repo)
 - [ ] An AI assistant (Claude, Codex, GPT-4, etc.)
 
 ---
@@ -21,7 +21,7 @@ You need:
 cd ~/Projects
 
 # Create and initialize the project folder
-bash /path/to/alubys-ai-dev-system/scripts/init-new-project.sh my-new-project
+bash ~/Tools/Alubys-AI-Dev-System/scripts/init-new-project.sh my-new-project
 
 # Enter the initialized project
 cd my-new-project
@@ -32,7 +32,7 @@ This creates the `.agent/` directory structure, copies the root templates (`AGEN
 If you already created and entered the project folder, initialize the current directory explicitly:
 
 ```bash
-bash /path/to/alubys-ai-dev-system/scripts/init-new-project.sh my-new-project .
+bash ~/Tools/Alubys-AI-Dev-System/scripts/init-new-project.sh my-new-project .
 ```
 
 ---

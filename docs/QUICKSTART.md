@@ -13,12 +13,14 @@ A complete AI operating system for project work — structured memory, workflow 
 
 ## For a New Project
 
+> **First time?** [Install the system](docs/INSTALLATION.md) before running these commands.
+
 ```bash
 # 1. Go to the parent folder where the project should be created
 cd ~/Projects
 
 # 2. Create and initialize the project folder
-bash /path/to/alubys-ai-dev-system/scripts/init-new-project.sh my-project
+bash ~/Tools/Alubys-AI-Dev-System/scripts/init-new-project.sh my-project
 
 # 3. Open the new folder in your editor / IDE
 cd my-project
@@ -32,7 +34,7 @@ cd my-project
 If you already created and entered the project folder, run:
 
 ```bash
-bash /path/to/alubys-ai-dev-system/scripts/init-new-project.sh my-project .
+bash ~/Tools/Alubys-AI-Dev-System/scripts/init-new-project.sh my-project .
 ```
 
 The AI will guide you through the rest.
@@ -41,12 +43,14 @@ The AI will guide you through the rest.
 
 ## For an Existing Project
 
+> **First time?** [Install the system](docs/INSTALLATION.md) before running these commands.
+
 ```bash
 # 1. Navigate to your existing project
 cd my-existing-project
 
 # 2. Copy the Alubys system into it
-bash /path/to/alubys-ai-dev-system/scripts/copy-agent-system.sh
+bash ~/Tools/Alubys-AI-Dev-System/scripts/copy-agent-system.sh
 
 # 3. Ask your file-aware AI assistant to follow AGENTS.md
 #    and use ONBOARD_EXISTING_PROJECT_PROMPT.md for onboarding.
