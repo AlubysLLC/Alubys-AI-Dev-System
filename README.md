@@ -67,30 +67,54 @@ alubys-ai-dev-system/
 
 ## Quickstart
 
+### Step 1 — Get the system (once per machine)
+
+Clone it to a stable location on your machine — not into each project:
+
+**Mac / Linux**
+```bash
+mkdir -p ~/Tools
+cd ~/Tools
+git clone https://github.com/AlubysLLC/Alubys-AI-Dev-System.git
+```
+
+**Windows (PowerShell)**
+```powershell
+mkdir C:\Tools
+cd C:\Tools
+git clone https://github.com/AlubysLLC/Alubys-AI-Dev-System.git
+```
+
+Your scripts live here and are called from other projects. You only do this once per machine.
+
+---
+
+### Step 2 — Set up a project
+
 ### New project — Mac / Linux
 ```bash
 cd ~/Projects
-bash /path/to/alubys-ai-dev-system/scripts/init-new-project.sh my-project-name
+bash ~/Tools/Alubys-AI-Dev-System/scripts/init-new-project.sh my-project-name
 cd my-project-name
 ```
 
 ### New project — Windows (PowerShell)
 ```powershell
 cd C:\Projects
-.\path\to\alubys-ai-dev-system\scripts\init-new-project.ps1 my-project-name
+.\C:\Tools\Alubys-AI-Dev-System\scripts\init-new-project.ps1 my-project-name
 cd my-project-name
 ```
 
 ### Existing project — Mac / Linux
 ```bash
 cd my-existing-project
-bash /path/to/alubys-ai-dev-system/scripts/copy-agent-system.sh
+bash ~/Tools/Alubys-AI-Dev-System/scripts/copy-agent-system.sh
 ```
 
 ### Existing project — Windows (PowerShell)
 ```powershell
 cd C:\my-existing-project
-.\path\to\alubys-ai-dev-system\scripts\copy-agent-system.ps1
+.\C:\Tools\Alubys-AI-Dev-System\scripts\copy-agent-system.ps1
 ```
 
 Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, then use the relevant prompt file for your workflow.
@@ -100,7 +124,7 @@ Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, th
 
 ### Verify the scripts (Mac / Linux)
 ```bash
-bash tests/test-scripts.sh
+bash ~/Tools/Alubys-AI-Dev-System/tests/test-scripts.sh
 ```
 
 ---
