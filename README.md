@@ -58,8 +58,7 @@ alubys-ai-dev-system/
 │
 ├── scripts/
 │   ├── init-new-project.sh          # Bootstrap a new project
-│   ├── copy-agent-system.sh         # Add to an existing project
-│   └── build-guide-pdf.sh           # Generate the PDF guide from Markdown
+│   └── copy-agent-system.sh         # Add to an existing project
 └── tests/
     └── test-scripts.sh              # Installer regression tests
 ```
@@ -103,15 +102,6 @@ Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, th
 ```bash
 bash tests/test-scripts.sh
 ```
-
-### Build the PDF guide
-`_GUIDE/Alubys_AI_Dev_System_Guide.md` is the guide source of truth. Generate the PDF only after content is final:
-
-```bash
-bash scripts/build-guide-pdf.sh
-```
-
-Output: `_GUIDE/Alubys_AI_Dev_System_Guide.pdf`
 
 ---
 

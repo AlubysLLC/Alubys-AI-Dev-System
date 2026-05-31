@@ -94,8 +94,7 @@ alubys-ai-dev-system/
 ├── docs/
 ├── scripts/
 │   ├── init-new-project.sh
-│   ├── copy-agent-system.sh
-│   └── build-guide-pdf.sh
+│   └── copy-agent-system.sh
 └── tests/
     └── test-scripts.sh
 ```
@@ -129,14 +128,8 @@ alubys-ai-dev-system/
 ```bash
 bash -n scripts/init-new-project.sh
 bash -n scripts/copy-agent-system.sh
-bash -n scripts/build-guide-pdf.sh
 bash tests/test-scripts.sh
 bash scripts/init-new-project.sh my-project-name
 bash scripts/copy-agent-system.sh /path/to/existing-project
 ```
 
----
-
-## Release Rule
-
-Regenerate `_GUIDE/Alubys_AI_Dev_System_Guide.pdf` only after `_GUIDE/Alubys_AI_Dev_System_Guide.md` and the public release contents are final. Run: `bash scripts/build-guide-pdf.sh`
