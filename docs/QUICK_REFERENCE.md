@@ -17,6 +17,8 @@
 
 ```
 Say: "Run the closeout protocol."
+AI first reads the FULL session transcript (never from memory),
+then proposes the memory updates for your approval.
 AI runs 7 steps, then runs the mandatory Memory Test.
 Session only closes when Memory Test passes.
 ```

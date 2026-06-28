@@ -204,6 +204,8 @@ The chosen mode should be recorded in `AGENTS.md` and `.agent/memory/active-cont
 
 The closeout is not optional. Every session that ends without it puts continuity at risk. It takes 2 minutes — the AI handles it, you just trigger it.
 
+> **Mandatory first step — the AI reads the entire session transcript** (first message to last) and builds the closeout from that, never from memory or a compacted in-context summary. It then proposes the memory updates for your approval before writing any file. This is what keeps deferred work, known limitations, and follow-ups from being silently dropped.
+
 #### 1. Trigger the closeout
 Say: **"Run the closeout protocol."**
 
@@ -232,6 +234,8 @@ If the answer is YES: session is complete. If the answer is NO: the AI updates t
 ## 9. Checkpoint Protocol
 
 A Checkpoint saves your session's progress mid-flight without ending the session. Use it when a session is getting long, before a risky change, or any time you want to protect work against context compacting.
+
+> Like closeout, the AI bases checkpoint updates on the actual session transcript, not a compacted in-context summary — checkpoints run under the same context-loss risk.
 
 #### 1. Trigger the checkpoint
 Say: **"Run checkpoint."**

@@ -26,6 +26,14 @@ When closeout is done well:
 
 Run this at the end of every session, regardless of how much or little was done.
 
+### Step 0 — Read the entire session first (MANDATORY, never skip)
+
+Before any other step, read the **entire session transcript from the first message to the last.** Do **not** build the closeout from memory files, your working context, or an in-context summary — those are compacted and lossy, and are the known cause of lost work.
+
+- Reconcile the whole conversation against the closeout: every request, decision, **deferral, known limitation, bug, follow-up, and "we'll handle X later"** must be explicitly captured somewhere durable (decisions, backlog, roadmap, or lessons).
+- After the full read, **present the proposed memory-file updates as a plan and wait for explicit approval before writing any file.**
+- If the full transcript isn't available (it was compacted and the underlying messages can't be re-read), **stop and tell the user** — do not closeout from memory.
+
 ### Step 1: Summarize completed work
 List 2–5 bullet points of what was actually completed this session. Be specific about deliverables, not vague about effort.
 

@@ -108,7 +108,7 @@ Before doing anything in this project:
 
 1. **Follow the current mode** (Brainstorming / Planning / Execution / Reflection)
 2. **Run the startup protocol** before beginning any session
-3. **Run the closeout protocol** before ending any session
+3. **Run the closeout protocol** before ending any session — **HARD RULE:** closeout (and any mid-session checkpoint) must be based on a full read of the entire session transcript, never from memory or a compacted in-context summary, and must present proposed memory updates for approval before any file is written (see `_PROMPTS/MASTER_SYSTEM_PROMPT.md`)
 4. **Honor the approval mode** recorded in this file and `.agent/memory/active-context.md`
 5. **Small changes only** — no large rewrites without explicit authorization
 6. **Update memory files** after every meaningful unit of work
@@ -128,6 +128,7 @@ Always ask before deleting data/files, overwriting user work, changing git histo
 ## Do Not Do
 
 - ❌ Skip startup/closeout protocols
+- ❌ Present a closeout or checkpoint plan without first reviewing the entire session transcript for deferred work, limitations, and follow-ups
 - ❌ Store API keys, passwords, or real secret values in tracked files
 - ❌ Make architectural changes without documenting them
 - ❌ Rewrite working code without authorization

@@ -17,6 +17,8 @@ Say: **"Run checkpoint."**
 
 ## What the AI Does
 
+> **Same source-of-truth rule as Closeout:** base every checkpoint update on the actual session transcript, not on an in-context summary or compacted memory. Checkpoints run mid-session under the same context-loss risk — scan the conversation before updating.
+
 | Step | Action | File Updated |
 |------|--------|-------------|
 | 1 | Update current phase, what was just done, immediate next steps | `active-context.md` |

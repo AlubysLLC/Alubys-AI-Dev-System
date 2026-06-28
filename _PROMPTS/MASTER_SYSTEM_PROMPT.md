@@ -77,6 +77,17 @@ Regardless of approval mode, always ask before:
 
 At the end of every session, before stopping, complete ALL of the following steps in order:
 
+### MANDATORY FIRST STEP — Read the Entire Session (NEVER SKIP)
+
+Before performing ANY closeout step below, read the **entire session transcript from the first message to the last.** Do NOT reconstruct the session from memory files, your active/working context, or an in-context summary — these are compacted and lossy, and are the known cause of lost work.
+
+- Reconcile the whole conversation against the closeout. Every request, decision, **deferral, known limitation, bug, follow-up, and "we'll handle X later"** raised at any point must be explicitly captured (in `decisions.md`, `backlog.md`, `roadmap.md`, or `lessons-learned.md`).
+- After reading the full transcript, **present the proposed memory-file updates as a plan and wait for explicit user approval before writing any file.**
+- This rule is absolute. It must never be skipped, even under context pressure or token limits.
+- If the full transcript is not available (e.g. it was compacted and the underlying messages cannot be re-read), **STOP and tell the user** — do not closeout from memory.
+
+Once the full read is done and the plan is approved, proceed through the steps in order:
+
 1. Summarize what was completed in this session (2–5 bullet points)
 2. Update `.agent/memory/active-context.md` — new current state, immediate next step, any blockers
 3. Update `.agent/memory/changelog.md` — append a dated entry for this session
@@ -103,6 +114,8 @@ Do not end a session without completing every step above. This is how continuity
 ## CHECKPOINT PROTOCOL
 
 Run a Checkpoint mid-session to persist progress without ending the session. Use this when a session is growing long, before a risky or complex change, or any time you want to ensure work survives a context compacting event.
+
+**Same source-of-truth rule as Closeout:** base every Checkpoint update on the actual session transcript, not on an in-context summary or compacted memory. Checkpoints run mid-session under the same context-loss risk — scan the conversation before updating.
 
 **Trigger:** User says `run checkpoint` or `checkpoint`.
 
