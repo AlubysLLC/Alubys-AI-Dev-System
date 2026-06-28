@@ -119,6 +119,9 @@ Open the project with a file-aware AI agent and ask it to follow `AGENTS.md`, th
 > **Windows first-time setup:** If PowerShell blocks the script, run this once in PowerShell:
 > `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
+### No-script install (script-blocked / corporate environments)
+If bash and PowerShell are blocked, skip the scripts entirely: download **[Alubys-AI-Dev-System-Template.zip](https://github.com/AlubysLLC/Alubys-AI-Dev-System/raw/main/Alubys-AI-Dev-System-Template.zip)**, extract it (the ZIP preserves the hidden `.agent/` folder), rename the folder to your project, and follow the included `START_HERE.md`. Setup is a one-time find-and-replace of three placeholders — your AI can do it for you.
+
 ### Verify the scripts (Mac / Linux)
 ```bash
 bash ~/Tools/Alubys-AI-Dev-System/tests/test-scripts.sh
